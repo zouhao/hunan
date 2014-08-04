@@ -499,3 +499,5 @@ input{float:left;}
 .form-group span.img{float:left;margin:10px 0 0 10px;cursor:pointer;}
 label.dd{width:70px;text-align:right;}
 .btn-green{background:#8EBF46;border:1px solid #ccc;cursor:pointer;color:#fff;padding:8px 20px;margin-left:10px;}
+.more{float:right;margin:10px 10px 0 0;background:-webkit-linear-gradient(top, #84af00 0%, #79a200 100%);color:#fff;padding:2px 5px;}
+a.more{color:#fff;}
