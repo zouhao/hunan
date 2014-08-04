@@ -1,0 +1,159 @@
+{include "Public/header"}
+{include "Public/search"}
+<script type="text/html" id="update-pwd-html">
+<form role="form">
+  <div class="form-group">
+    <label>原密码</label>
+    <input type="password" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请输入原密码" name="old_password" value="">
+  </div>
+  <div class="form-group">
+    <label>新密码</label>
+    <input type="password" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请输入新密码" name="password" value="">
+  </div>
+<div class="form-group">
+    <label>重复新密码</label>
+    <input type="password" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请重复输入新密码" name="repassword" value="">
+  </div>
+ <div class="form-group" id="update-pwd-error">
+  </div>
+</form>
+</script>
+<script type="text/javascript">
+$(function(){
+	$("#update-pwd").click(function(){
+		art.dialog({
+			id:"release-question",
+			title:"修改密码",
+			content:baidu.template("update-pwd-html",{}),
+			okVal:"修改密码",
+			lock:true,
+			cancel:true,
+			ok:function(){
+				var data={};
+				data.old_password=$("input[name='old_password']").val();
+				data.password=$("input[name='password']").val();
+				data.repassword=$("input[name='repassword']").val();
+				$.post("{:U('User/update')}",data,function(rs){
+					if(rs.result==1){
+						art.dialog({
+							title:"修改密码成功",
+							content:"修改密码成功",
+							ok:function(){
+								var list = art.dialog.list;
+								for (var i in list) {
+								    list[i].close();
+								};
+							}
+						});
+					}else{
+						$("#update-pwd-error").html(rs.msg);
+						return false;
+					}
+				},'json');
+				return false;
+			}
+		});
+		return false;
+	});
+	$("#update").click(function(){
+		$(".user_left").html(baidu.template("update-html",{}));
+		return false;
+	});
+});
+</script>
+<div class="g-bd5">
+<div class="g-bdc">
+<div class="g-box12 f-cb">
+<div class="m-goodblog1">
+  <ul class="m-vw-nav f-cb">
+    <li class="j-crt"><a href="#">个人信息</a></li>
+  </ul>
+<div class="con_left" style="width:690px;">
+            <div class="container">
+    			<div class="user_left">
+                	
+                	<div class="info_con">
+                	<div class="info_tit">
+                    	<h3>基本信息</h3>
+                        <h5 id="update">编 辑</h5>
+                    </div><br/>
+                    <p><em>登录名：</em>{$_SESSION['user']['username']} &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="update-pwd">修改密码</a></p>
+                    <p><em>QQ：</em>{$_SESSION['user']['qq']|'&nbsp;'}</p>
+                    <p><em>Email：</em>{$_SESSION['user']['email']|'&nbsp;'}</p>
+                    <p><em>微信：</em>{$_SESSION['user']['weixin']|'&nbsp;'}</p>
+                    <p><em>性别：</em>{:gender($_SESSION['user']['gender'])}</p>
+                    <p><em>生日：</em>{$_SESSION['user']['birthday']|'&nbsp;'}</p>
+                    <p><em>简介：</em>{$_SESSION['user']['information']|'&nbsp;'}</p>
+                </div>
+ <script type="text/html" id="update-html">
+   <form action="{:U('updateInfo')}" method="post">
+  <div class="form-group">
+    <label class="dd">QQ：</label>
+    <input type="text" class="w-inputxt w-inputxt-3 left" autocomplete="off" name="qq" value="{$_SESSION['user']['qq']}">
+  </div>
+  <div class="form-group">
+    <label class="dd">Email：</label>
+    <input type="text" class="w-inputxt w-inputxt-3 left" autocomplete="off" name="email" value="{$_SESSION['user']['email']}">
+  </div>
+	<div class="form-group">
+    <label class="dd">微信：</label>
+    <input type="text" class="w-inputxt w-inputxt-3 left" autocomplete="off" name="weixin" value="{$_SESSION['user']['weixin']}">
+  </div>
+  <div class="form-group">
+    <label class="dd">性别：</label>
+    <select name="gender" style="border:1px solid #cececf;outline:none;float:left;padding:3px;margin-left:10px;margin-top:10px;">	
+	{foreach gender() as $k=>$v}
+	<option value="{$k}" {if $_SESSION['user']['gender']==$k}selected="selected"{/if}>{$v}</option>
+	{/foreach}
+	</select>
+  </div>
+  <div class="form-group">
+    <label class="dd">生日：</label>
+    <input type="text" class="w-inputxt w-inputxt-3 left" onfocus="WdatePicker()" autocomplete="off" name="birthday" value="{$_SESSION['user']['birthday']}">
+  </div>
+  <div class="form-group">
+    <label class="dd">简介：</label>
+    <input type="text" class="w-inputxt w-inputxt-3 left" name="information" value="{$_SESSION['user']['information']}">
+  </div>
+   <div class="form-group">
+    <label class="dd">&nbsp;</label>
+    <input type="submit" class="btn-green" value="保存">
+  </div>
+</form>
+</script>
+                <!-- 
+                	<div class="info_con">
+                	<div class="info_tit">
+                    	<h3>联系信息</h3>
+                        <h5>编 辑</h5>
+                    </div><br/>
+                    <p><em>手机：</em>1506458525</p>
+                    <p><em>QQ：</em>1234579845</p>
+                    <p><em>邮箱：</em>nbt@163.com</p>
+                </div>
+                 -->
+                </div>
+                
+			</div>
+            
+        </div>
+
+</div>
+<div class="m-goodtag1">
+ 	<div class="user_head">
+ 	<!-- 
+        <img src="http://imgsize.ph.126.net/?imgurl=http://img7.ph.126.net/YcGrfrXy_SQFwR6B4BE2qw==/1277051969354135957.jpg_180x180x0x90.jpg" width="180" height="180" >
+         -->
+        <div class="boxcaption">					
+            <div class="quan_tit">
+                点击图片修改头像
+            </div>
+        </div>
+    </div>
+    <div class="user_name">
+    	用户名
+    </div>
+</div>
+</div>
+</div>
+{include "Public/footer"}

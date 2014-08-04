@@ -1,0 +1,29 @@
+{include "Public/header"}
+{include "Public/search"}
+<div class="g-bd5">
+	<div class="g-bdc">
+		<div class="f-cb">
+			<div class="m-goodblog1 width100">
+				<ul class="blogs" id="blogs">
+					{foreach $list as $v}
+					<li class="itm_search">
+						<div class="itmc">
+							<div class="m-info f-cb">
+								<h3 class="ititle">
+									<a class="ttl js-167639" href="{if $v['type']==1}{:U('News/read?id='.$v['id'])}{else}{:U('Question/read?id='.$v['id'])}{/if}"
+										target="_blank">[{if $v['type']==1}文章{else}问答{/if}]{$v['title']}</a>
+								</h3>
+								<div class="tags js-167639">{$v['create_time']}</div>
+							</div>
+							<div class="m-postlst f-cb js-167639 icontent">
+								<a href="{if $v['type']==1}{:U('News/read?id='.$v['id'])}{else}{:U('Question/read?id='.$v['id'])}{/if}">{:sub(strip_tags($v['content']),0,100)}</a>
+							</div>
+						</div>
+					</li>
+					{/foreach}
+				</ul>
+				<div class="pagination">{$page}</div>
+			</div>
+		</div>
+	</div>
+	{include "Public/footer"}

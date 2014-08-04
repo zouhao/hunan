@@ -1,0 +1,71 @@
+<script type="text/javascript">
+var area={:json_encode($area)};
+$(function(){
+	$("select[name='province_id']").change(function(){
+		var province_id=$(this).val();
+		if(area[province_id]){
+			{if $cityHeader}
+			var city_html='<option value="0">请选择城市</option>';
+			{else}
+			var city_html='';
+			{/if}
+			for(var i in area[province_id]['city']){
+				city_html+='<option value="'+i+'">'+area[province_id]['city'][i]['city_name']+'</option>';
+			}
+			$("select[name='city_id']").html(city_html).show();
+			$("select[name='area_id']").hide();
+		}else{
+			$("select[name='city_id'],select[name='area_id']").hide();
+		}
+	});
+	{if !isset($areaHidden)||$areaHidden==false}
+	$("select[name='city_id']").change(function(){
+		var province_id=$("select[name='province_id']").val();
+		var city_id=$("select[name='city_id']").val();
+		if(area[province_id]['city'][city_id]){
+			{if $areaHeader}
+			var area_html='<option value="0">请选择区域</option>';
+			{else}
+			var area_html='';
+			{/if}
+			for(var i in area[province_id]['city'][city_id]['area']){
+				area_html+='<option value="'+i+'">'+area[province_id]['city'][city_id]['area'][i]+'</option>';
+			}
+			$("select[name='area_id']").html(area_html).show();
+		}else{
+			$("select[name='area_id']").hide();
+		}
+	});
+	{/if}
+});
+</script>
+<select name="province_id">
+	{if $provinceHeader}
+	<option value="0">请选择省份</option>
+	{/if}
+	{foreach $area as $k=>$v}
+	<option value="{$k}" {if $k==$provinceId}selected="selected"{/if}>{$v['province_name']}</option>
+	{/foreach}
+</select>
+<select name="city_id" {if !isset($area[$provinceId]['city'])}style="display:none;"{/if}>
+	{if $cityHeader}
+	<option value="0">请选择城市</option>
+	{/if}
+	{if isset($area[$provinceId]['city'])}
+	{foreach $area[$provinceId]['city'] as $k=>$v}
+	<option value="{$k}" {if $cityId==$k}selected="selected"{/if}>{$v['city_name']}</option>
+	{/foreach}
+	{/if}
+</select>
+{if !isset($areaHidden)||$areaHidden==false}
+<select name="area_id" {if !isset($area[$provinceId]['city'][$cityId]['area'])}style="display:none;"{/if}>
+	{if $areaHeader}
+	<option value="0">请选择区域</option>
+	{/if}
+	{if isset($area[$provinceId]['city'][$cityId]['area'])}
+	{foreach $area[$provinceId]['city'][$cityId]['area'] as $k=>$v}
+	<option value="{$k}" {if $areaId==$k}selected="selected"{/if}>{$v}</option>
+	{/foreach}
+	{/if}
+</select>
+{/if}

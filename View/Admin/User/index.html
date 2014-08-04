@@ -1,0 +1,55 @@
+{include "Public/header"}
+		<div class="page_tit">{$title}</div>
+		<!-- START TOOLBAR -->
+		<div class="Toolbar_inbox">
+			<div class="page right"></div>
+		</div>
+		<!-- END TOOLBAR -->
+		<!-- START LIST -->
+		<div class="list" id="list">
+		<form action="{:U('delete')}" method="post">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr>
+						<th style="width: 30px;"><input type="checkbox" id="checkAll">
+						</th>
+						<th class="line_l">用户名</th>
+						<th class="line_l">注册时间</th>
+						<th class="line_l">上次登录时间</th>
+						<th class="line_l">上次登录ip</th>
+						<th class="line_l">email</th>
+						<th class="line_l">qq</th>
+						<th class="line_l">微信</th>
+						<th class="line_l">性别</th>
+						<th class="line_l">生日</th>
+						<th class="line_l">说明</th>
+					</tr>
+					{foreach $list as $v}
+					<tr>
+
+						<td><input type="checkbox" value="{$v['id']}" name="id[]"></td>
+						<td>{$v['username']}</td>
+						<td>{$v['create_time']}</td>
+						<td>{$v['last_login_time']}</td>
+						<td>{$v['last_login_ip']}</td>
+						<td>{$v['email']}</td>
+						<td>{$v['qq']}</td>
+						<td>{$v['weixin']}</td>
+						<td>{:gender($v['gender'])}</td>
+						<td>{$v['birthday']}</td>
+						<td>{$v['information']}</td>
+					</tr>
+					{/foreach}
+				</tbody>
+			</table>
+			</form>
+			<div class="Toolbar_inbox">
+			<div class="page right">
+			{$page}
+			</div>
+		</div>
+		</div>
+		<!-- END LIST -->
+
+	</div>
+{include "Public/footer"}

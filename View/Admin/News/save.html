@@ -1,0 +1,76 @@
+{include "Public/header"}
+<script type="text/javascript" src="__ROOT__/Extra/Library/KindEditor/kindeditor.js"></script>
+<script type="text/javascript">
+$(function(){
+	KindEditor.ready(function(K) {
+	    var content = K.create('.KindEditor', {
+	    });
+	});
+	$("form").validate({
+		rules : {
+			"title" : {
+				required : true,
+				rangelength : [ 1, 40 ]
+			}
+		},
+		messages:{
+			title:{
+				required:"新闻标题必须填写",
+				rangelength:"新闻标题必须在1-40个字符之间"
+			}
+		}
+	});
+});
+</script>
+	<div class="page_tit">{$title}</div>
+	<!-- START CONFIG_FORM -->
+	<form method="POST" action="" enctype="multipart/form-data">
+	{if isset($_GET['id'])}
+	<input type="hidden" name="id" value="{:intval($_GET['id'])}" />
+	{/if}
+		<div class="form2">
+			<dl class="lineD">
+				<dt>
+					标题：
+				</dt>
+				<dd>
+					<input name="title"  type="text" value="{$info['title']|''}"  class="s-txt">
+				</dd>
+			</dl>
+			<dl class="lineD">
+				<dt>
+					缩略图：
+				</dt>
+				<dd>
+					{:A('Template/uploadFile',isset($info['img'])?array('img'=>$info['img'],'imageName'=>'img'):array('imageName'=>'img'))}
+				</dd>
+			</dl>
+			<dl class="lineD" id='dl_user_group'>
+				<dt>
+					类别：
+				</dt>
+				<dd>
+					<select name="category_id">
+					{foreach $categoryList as $v}
+					<option value="{$v['id']}" {if isset($info['category_id'])&&$info['category_id']==$v['id']}selected="selected"{/if}>{$v['title']}</option>
+					{/foreach}
+					</select>
+				</dd>
+			</dl>
+			<dl class="lineD">
+				<dt>
+					内容：
+				</dt>
+				<dd>
+					<textarea name="content" class="KindEditor">{$info['content']|''}</textarea>
+				</dd>
+			</dl>
+			<div class="page_btm">
+			<input type="submit" class="btn_b" value="保存"  />
+			</div>
+		</div>
+	</form>
+	<!-- END CONFIG_FORM -->
+</div>
+
+</html>

@@ -1,0 +1,94 @@
+{include "Public/header"}
+	<div class="page_tit">{$title}</div>
+	<!-- START CONFIG_FORM -->
+	<form method="POST" action="">
+		<div class="form2">
+			<dl class="lineD">
+				<dt>
+					站点标题：
+				</dt>
+				<dd>
+					<input name="WEB_TITLE"  type="text" value="{:C('WEB_TITLE')}" class="input-big">
+				</dd>
+			</dl>
+			<dl class="lineD">
+				<dt>
+					站点关键字：
+				</dt>
+				<dd>
+					<input name="WEB_KEYWORDS"  type="text" value="{:C('WEB_KEYWORDS')}" class="input-big">
+				</dd>
+			</dl>
+			<dl class="lineD">
+				<dt>
+					站点描述：
+				</dt>
+				<dd>
+					<input name="WEB_DESCRIPTION"  type="text" value="{:C('WEB_DESCRIPTION')}" class="input-big">
+				</dd>
+			</dl>
+			<dl class="lineD">
+				<dt>
+					QQ：
+				</dt>
+				<dd>
+					<input name="QQ"  type="text" value="{:C('QQ')}" class="input-big">
+				</dd>
+			</dl>
+			<dl class="lineD">
+				<dt>
+					微信：
+				</dt>
+				<dd>
+					<input name="WEIXIN"  type="text" value="{:C('WEIXIN')}" class="input-big">
+				</dd>
+			</dl>
+			<dl class="lineD">
+				<dt>
+					Email：
+				</dt>
+				<dd>
+					<input name="EMAIL"  type="text" value="{:C('EMAIL')}" class="input-big">
+				</dd>
+			</dl>
+			<dl class="lineD">
+				<dt>
+					苹果下载：
+				</dt>
+				<dd>
+					<input name="IOS_URL"  type="text" value="{:C('IOS_URL')}" class="input-big">
+				</dd>
+			</dl>
+			<dl class="lineD">
+				<dt>
+					安卓下载：
+				</dt>
+				<dd>
+					<input name="ANDROID_URL"  type="text" value="{:C('ANDROID_URL')}" class="input-big">
+				</dd>
+			</dl>
+			<dl class="lineD">
+				<dt>
+					Windows Phone下载：
+				</dt>
+				<dd>
+					<input name="WINDOWS_PHONE_URL"  type="text" value="{:C('WINDOWS_PHONE_URL')}" class="input-big">
+				</dd>
+			</dl>
+			<dl class="lineD">
+				<dt>
+					版权：
+				</dt>
+				<dd>
+					<input name="COPYRIGHT"  type="text" value="{:C('COPYRIGHT')}" class="input-big">
+				</dd>
+			</dl>
+			<div class="page_btm">
+				<input type="submit" class="btn_b" value="保存"  />
+			</div>
+		</div>
+	</form>
+	<!-- END CONFIG_FORM -->
+</div>
+
+</html>

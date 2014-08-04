@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+<title>{:C('WEB_TITLE')}</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="ie=emulateie7"/>
+<meta name="author" content="netease"/>
+<meta name="version" content="1.0"/>
+<meta name="keywords" content="{:C('WEB_KEYWORDS')}"/>
+<meta name="description" content="{:C('WEB_DESCRIPTION')}"/>
+<script type="text/javascript">
+   (function(window,document){
+        if(top!=window) top.location=location.href;
+        document.uniqueID!=document.uniqueID&&!!location.hash&&(location.hash=location.hash);
+        window.focus();
+    })(this,document);
+  </script>
+<link href="__CONTENT__/css/macro.css" type="text/css" rel="stylesheet"/>
+<link href="__CONTENT__/css/new.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="__CONTENT__/js/jquery.js"></script>
+<script type="text/javascript" src="__CONTENT__/js/baiduTemplate.js"></script>
+<script type="text/javascript" src="__CONTENT__/js/WdatePicker.js"></script>
+<script type="text/javascript" src="__CONTENT__/js/tongji.js"></script>
+<script type="text/javascript" src="__CONTENT__/js/artDialog.js?skin=default"></script>
+</head>
+<body>
+<script type="text/javascript">
+$(function(){
+	$("#login").click(function(){
+		art.dialog({
+			id:"login",
+			title:"登录",
+			content:baidu.template("login-html",{}),
+			lock:true,
+			ok:function(){
+				var data={};
+				data.username=$("input[name='username']").val();
+				data.password=$("input[name='password']").val();
+				data.code=$("input[name='code']").val();
+				$.post("{:U('User/login')}",data,function(rs){
+					if(rs.result==1){
+						location.reload();
+					}else{
+						$("#login-error").html(rs.msg);
+						return false;
+					}
+				},'json');
+				return false;
+			},
+			okVal:"登录",
+			cancel:true
+		});
+		return false;
+	});
+	$("#register").click(function(){
+		art.dialog({
+			id:"register",
+			title:"注册",
+			content:baidu.template("register-html",{}),
+			lock:true,
+			ok:function(){
+				var data={};
+				data.username=$("input[name='username']").val();
+				data.password=$("input[name='password']").val();
+				data.code=$("input[name='code']").val();
+				if(data.password!=$("input[name='repassword']").val()){
+					$("#register-error").html("两次输入密码不一致");
+					return false;
+				}
+				$.post("{:U('User/register')}",data,function(rs){
+					if(rs.result==1){
+						location.reload();
+					}else{
+						$("#register-error").html(rs.msg);
+						return false;
+					}
+				},'json');
+				return false;
+			},
+			okVal:"注册",
+			cancel:true
+		});
+		return false;
+	});
+	$("#release-question").click(function(){
+		art.dialog({
+			id:"release-question",
+			title:"发布问题",
+			content:baidu.template("release-question-html",{}),
+			lock:true,
+			okVal:"发布",
+			cancel:true,
+			ok:function(){
+				var data={};
+				data.title=$("input[name='title']").val();
+				data.content=$("textarea[name='content']").val();
+				$.post("{:U('Question/save')}",data,function(rs){
+					if(rs.result==1){
+						location.href=rs.url;
+					}else{
+						$("#release-question-error").html(rs.msg);
+						return false;
+					}
+				},'json');
+				return false;
+			}
+		});
+	});
+	tongji("{:U('Public/tongji')}");
+});
+</script>
+<div id="lofterheadbar" class="g-hd">
+  <h1 class="m-logo"><a href="__ROOT__">首页</a></h1>
+  <h1 class="m-logo"><a href="{:U('News/index')}">文章</a></h1>
+  <h1 class="m-logo"><a href="{:U('Question/index')}">问答</a></h1>
+  <div class="m-nav m-nav-2" id="topbar">
+  <!--
+    <ul class="nav1">
+      <li ><a href="#">客户端</a></li>
+      <li ><a href="#">关于我们</a></li>
+    </ul>
+    -->
+    {if isset($_SESSION['user'])}
+    <span style="color:#fff;margin-right:30px;">{$_SESSION['user']['username']},欢迎回来.
+    <a href="{:U('User/index')}" >个人中心</a>
+    <a href="#" id="release-question">发布问题</a>
+    <a href="{:U('User/layout')}">退出</a></span>
+    {else}
+    <ul class="btn">
+      <li><a href="#" id="login">登录</a></li>
+      <li><a href="#" id="register">注册</a></li>
+    </ul>
+    {/if}
+  </div>
+</div>
+<script type="text/html" id="login-html">
+<form role="form">
+  <div class="form-group">
+    <label>用户名</label>
+    <input type="text" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请输入用户名" name="username" value="">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">密码</label>
+    <input type="password" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请输入密码" name="password" value="">
+  </div>
+<div class="form-group">
+    <label>验证码</label>
+    <input type="text" class="w-inputxt w-inputxt-3" style="width:50px;float:left;" maxlength="4" autocomplete="off" placeholder="验证码" name="code" value="">
+  	<span class="img"><img src="{:U('Public/verify')}" onclick="javascript:this.src='{:U('Public/verify')}'"/></span>
+</div>
+	<div class="form-group" id="login-error">
+</form>
+</script>
+<script type="text/html" id="register-html">
+<form role="form">
+  <div class="form-group">
+    <label>用户名</label>
+    <input type="text" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请输入用户名" name="username" value="">
+  </div>
+  <div class="form-group">
+    <label>密码</label>
+    <input type="password" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请输入密码" name="password" value="">
+  </div>
+ <div class="form-group">
+    <label>重复密码</label>
+    <input type="password" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请重复输入密码" name="repassword" value="">
+  </div>
+<div class="form-group">
+    <label>Email</label>
+    <input type="text" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请输入Email邮箱" name="email" value="">
+  </div>
+<div class="form-group">
+    <label>QQ</label>
+    <input type="text" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请输入QQ" name="qq" value="">
+  </div>
+<div class="form-group">
+    <label>微信号</label>
+    <input type="text" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请输入微信号" name="weixin" value="">
+  </div>
+<div class="form-group">
+    <label>性别</label>
+	<select name="gender" style="border:1px solid #cececf;outline:none;float:left;padding:3px;margin-left:34px;margin-top:10px;">	
+	{foreach gender() as $k=>$v}
+	<option value="{$k}">{$v}</option>
+	{/foreach}
+	</select>
+  </div>
+<div class="form-group">
+    <label>出生年月</label>
+	<input type="text" onfocus="WdatePicker()" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请输入出生年月" name="birthday" value="">
+  </div>
+<div class="form-group">
+    <label>个人说明</label>
+	<input type="text" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请输入个人说明" name="information" value="">
+  </div>
+<div class="form-group">
+    <label>验证码  </label>
+    <input type="text" class="w-inputxt w-inputxt-3" style="width:50px;float:left;" maxlength="4" autocomplete="off" placeholder="验证码" name="code" value="">
+  	<span class="img"><img src="{:U('Public/verify')}" onclick="javascript:this.src='{:U('Public/verify')}'"/></span>
+</div>
+  <div class="form-group" id="register-error">
+  </div>
+</form>
+</script>
+<script type="text/html" id="release-question-html">
+<form role="form">
+  <div class="form-group">
+    <label>标题</label>
+    <input type="text" class="w-inputxt w-inputxt-3" autocomplete="off" placeholder="请输入标题" name="title" value="">
+  </div>
+  <div class="form-group">
+    <label>内容</label>
+	<textarea class="w-inputxt w-inputxt-3" style="height:100px;" placeholder="请描述问题" name="content"></textarea>
+  </div>
+ <div class="form-group" id="release-question-error">
+  </div>
+</form>
+</script>

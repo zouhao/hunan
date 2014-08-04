@@ -1,0 +1,17 @@
+{foreach $industry_list as $k=>$v}
+<p>
+	<strong class="left">{$v['name']}</strong>
+</p>
+<div class="clear"></div>
+<p>
+{foreach $v['child'] as $key=>$val}
+<span class="left">
+<input type="checkbox" name="industry_id[]" value="{$key}" {if in_array($key,$industry_id_list)}checked{/if} />
+</span>
+<span class="left">
+{$val} 
+</span>
+{/foreach}
+</p>
+<div class="clear"></div>
+{/foreach}

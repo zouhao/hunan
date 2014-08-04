@@ -1,0 +1,56 @@
+<script type="text/javascript">
+$(function(){
+	$('#file_multi_upload').uploadify({
+		'formData'     : {
+		},
+		'cancelImg':'__CONTENT__/Admin/images/uploadify-cancel.png',
+		'swf'      : '__CONTENT__/swf/uploadify.swf',
+		'uploader' : "{:U('Public/upload')}",
+		'multi':true,
+		'fileTypeDesc':'请选择一张图片',
+		'fileTypeExts':'*.jpg;*.jpeg;*.gif;*.png',
+		'buttonText':'上传图片',
+		'width':100,
+		'height':25,
+		'uploadLimit':5,
+		'onUploadSuccess':function(file, rs, response) { 
+			if(rs==""){
+				alert("上传失败,请重新上传");
+				return false;
+			}
+			var prefix="__UPLOAD__/";
+			var html='<div class="left">';
+			html+='<a href="'+prefix+rs+'" data-lightbox="example-set" >';
+			html+='<img src="'+prefix+rs+'" height="100" style="border:1px solid #ccc;" />';
+			html+='</a>';
+			html+='<a href="#" class="deleteImg">';
+			html+='<img src="__CONTENT__/Admin/images/uploadify-cancel.png" />';
+			html+='</a>';
+			html+='<div class="clear"></div>';
+			html+='<input type="text" name="{$imageName}_title[]" placeholder="图片标题" value=""/>';
+			html+='<input type="hidden" name="{$imageName}[]" value="'+rs+'"/>';
+			html+='</div>';
+			$("#file_multi_upload").after(html);
+		},
+		'onUploadError': function(file, errorCode, errorMsg, errorString) {
+            alert(errorString);
+        }
+	});
+	$(".deleteImg").live("click",function(){
+		$(this).parent().remove();
+		return false;
+	});
+});
+</script>
+<input type="file" id="file_multi_upload"/>
+{foreach $img as $v}
+<div class="left">
+	<a href="__UPLOAD__/{$v['image']}" data-lightbox="example-set" data-title="{$v['image_title']}">
+	<img src="__UPLOAD__/{$v['image']}" height="100" style="border:1px solid #ccc;" />
+	</a>
+	<a href="#" class="deleteImg"><img src="__CONTENT__/Admin/images/uploadify-cancel.png" /></a>
+	<div class="clear"></div>
+	<input type="hidden" name="{$imageName}[]" placeholder="图片标题" value="{$v['image']}"/>
+	<input type="text" name="{$imageName}_title[]" value="{$v['image_title']}"/>
+</div>
+{/foreach}

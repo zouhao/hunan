@@ -1,0 +1,37 @@
+<script type="text/javascript">
+$(function(){
+	var tradeList={:json_encode($tradeList)};
+	$("#trade_id_1").change(function(){
+		var trade_id_1=$(this).val();
+		if(trade_id_1=="0"){
+			$("select[name='trade_id']").html('<option value="0">请选择</option>');
+		}else{
+			var select_content='';
+			for(var t in tradeList){
+				if(tradeList[t].pid==trade_id_1){
+					select_content+='<option value="'+tradeList[t].id+'">'+tradeList[t].trade_name+'</option>';
+				}
+			}
+			$("select[name='trade_id']").html(select_content);
+		}
+	});
+});
+</script>
+<select id="trade_id_1">
+	<option value="0">请选择类别</option>
+	{foreach $tradeList as $v}
+	{if $v['pid']=='0'}
+	<option value="{$v['id']}" {if $tradePid==$v['id']}selected="selected"{/if}>{$v['trade_name']}</option>
+	{/if}
+	{/foreach}
+</select>
+<select name="trade_id">
+	<option value="{$tradePid}">请选择类别</option>
+	{if !empty($tradeId)}
+		{foreach $tradeList as $v}
+		{if $v['pid']==$tradePid}
+		<option value="{$v['id']}" {if $tradeId==$v['id']}selected="selected"{/if}>{$v['trade_name']}</option>
+		{/if}
+		{/foreach}
+	{/if}
+</select>

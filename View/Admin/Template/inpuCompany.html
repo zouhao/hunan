@@ -1,0 +1,10 @@
+<dl class="lineD">
+	<dt>所属商家：</dt>
+	<dd>
+		<select name="{$company_name}">
+		{foreach $companyList as $v}
+		<option value="{$v['id']}" {if $v['id']==$company_val}selected="selected"{/if} >{$v['name']}</option>
+		{/foreach}
+		</select>
+	</dd>
+</dl>

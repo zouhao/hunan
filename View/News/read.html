@@ -1,0 +1,64 @@
+{include "Public/header"}
+<link type="text/css" rel="stylesheet"
+	href="__CONTENT__/css/article.css" />
+{include "Public/search"}
+<div class="g-doc box">
+	<div class="g-head">
+		<div class="g-hdc box">
+			<!-- 
+			<div class="m-hdimg">
+				<a class="hdimg img" href="/"> <img
+					src="__UPLOAD__/{$_SESSION['user']['avater_pic']}"
+					width="150" height="150" />
+				</a>
+			</div>
+			 -->
+			<!-- 自定义logo时，-->
+			<div class="m-about">
+				<h1 class="ttl">
+					<a href="#">{$info['title']}</a>
+				</h1>
+				<!-- 
+				<p class="cont">{$info['create_time']}</p>
+				 -->
+			</div>
+			<span class="icn0">&nbsp;</span>
+		</div>
+	</div>
+	<div class="g-bd">
+		<div class="box">
+			<div class="m-postlist">
+				<div class="m-post  m-post-txt  ">
+					<div class="postinner">
+						<div class="ct">
+							<div class="ctc box">
+							<!-- 
+								<h2 class="ttl">
+									<a href="#">{$info['title']}</a>
+								</h2>
+								 -->
+								<!-- 有缩略图时 -->
+								<div class="txtcont">
+									{$info['content']}
+								</div>
+							</div>
+						</div>
+						<!-- 
+						<div class="infol info box">
+							<span class="icn  icn2  ">&nbsp;</span>
+							
+							<a class="hot"
+								href="http://lofterphoto3.lofter.com/post/10e991_2d3c3b">2</a>
+						</div>
+						 -->
+						<div class="infor info box">
+							<a class="date"
+								href="#">{$info['create_time']}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+	{include "Public/footer"}

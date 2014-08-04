@@ -1,0 +1,43 @@
+{include "Public/header"}
+<script type="text/javascript">
+</script>
+	<div class="page_tit">{$title}</div>
+	<!-- START CONFIG_FORM -->
+	<form method="POST" action="" enctype="multipart/form-data">
+	{if isset($_GET['id'])}
+	<input type="hidden" name="id" value="{:intval($_GET['id'])}" />
+	{/if}
+		<div class="form2">
+			<dl class="lineD">
+				<dt>
+					缩略图：
+				</dt>
+				<dd>
+					{:A('Template/uploadFile',isset($info['image'])?array('img'=>$info['image'],'imageName'=>'image'):array('imageName'=>'image'))}
+				</dd>
+			</dl>
+			<dl class="lineD">
+				<dt>
+					描述：
+				</dt>
+				<dd>
+					<input name="describe"  type="text" value="{$info['describe']|''}"  class="s-txt">
+				</dd>
+			</dl>
+			<dl class="lineD">
+				<dt>
+					超级连接：
+				</dt>
+				<dd>
+					<input name="href"  type="text" value="{$info['href']|'#'}"  class="s-txt">
+				</dd>
+			</dl>
+			<div class="page_btm">
+			<input type="submit" class="btn_b" value="保存"  />
+			</div>
+		</div>
+	</form>
+	<!-- END CONFIG_FORM -->
+</div>
+
+</html>

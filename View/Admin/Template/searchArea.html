@@ -1,0 +1,53 @@
+<script type="text/javascript">
+$(function(){
+	var area={:json_encode($area)};
+	$("select[name='province_id']").change(function(){
+		var province_id=$(this).val();
+		if(area[province_id]){
+			var city_html='<option value="0">全部城市</option>';
+			for(var i in area[province_id]['city']){
+				city_html+='<option value="'+i+'">'+area[province_id]['city'][i]['city_name']+'</option>';
+			}
+			$("select[name='city_id']").html(city_html).show();
+			$("select[name='area_id']").hide();
+		}else{
+			$("select[name='city_id'],select[name='area_id']").hide();
+		}
+	});
+	$("select[name='city_id']").change(function(){
+		var province_id=$("select[name='province_id']").val();
+		var city_id=$("select[name='city_id']").val();
+		if(area[province_id]['city'][city_id]){
+			var area_html='<option value="0">全部区域</option>';
+			for(var i in area[province_id]['city'][city_id]['area']){
+				area_html+='<option value="'+i+'">'+area[province_id]['city'][city_id]['area'][i]+'</option>';
+			}
+			$("select[name='area_id']").html(area_html).show();
+		}else{
+			$("select[name='area_id']").hide();
+		}
+	});
+});
+</script>
+<select name="province_id">
+	<option value="0">全部省份</option>
+	{foreach $area as $k=>$v}
+	<option value="{$k}" {if $k==$province_id}selected="selected"{/if}>{$v['province_name']}</option>
+	{/foreach}
+</select>
+<select name="city_id" {if !isset($area[$province_id]['city'])}style="display:none;"{/if}>
+	<option value="0">全部城市</option>
+	{if isset($area[$province_id]['city'])}
+	{foreach $area[$province_id]['city'] as $k=>$v}
+	<option value="{$k}" {if $city_id==$k}selected="selected"{/if}>{$v['city_name']}</option>
+	{/foreach}
+	{/if}
+</select>
+<select name="area_id" {if !isset($area[$province_id]['city'][$city_id]['area'])}style="display:none;"{/if}>
+	<option value="0">全部区域</option>
+	{if isset($area[$province_id]['city'][$city_id]['area'])}
+	{foreach $area[$province_id]['city'][$city_id]['area'] as $k=>$v}
+	<option value="{$k}" {if $area_id==$k}selected="selected"{/if}>{$v}</option>
+	{/foreach}
+	{/if}
+</select>

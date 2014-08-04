@@ -1,0 +1,171 @@
+{include "Public/header"}
+{include "Public/search"}
+{:load('js/jquery.KinSlideshow.js')}
+<script type="text/javascript">
+$(function(){
+	$(".m-vw-nav li").click(function(){
+		$(".m-vw-nav li").removeClass("j-crt");
+		$(this).addClass("j-crt");
+		var index=$(this).index();
+		if(index==1&&{$_SESSION['user']['id']|'0'}==0){
+			$("#login").click();
+		}
+		$("#blogs .list").hide();
+		$("#blogs .list").eq(index).show();
+		return false;
+	});
+	$(".attention").click(function(){
+		if({$_SESSION['user']['id']|0}==0){
+			$("#login").click();
+			return false;
+		}
+		var data={};
+		data.type=$(this).attr("type");
+		data.other_id=$(this).attr("other_id");
+		var that=$(this);
+		$.get("{:U('Index/attention')}",data,function(rs){
+			if(rs.result==1){
+				that.find("span").html('&nbsp;关注&nbsp;');
+			}else if(rs.result==2){
+				that.find("span").html('&nbsp;取消关注&nbsp;');
+			}else{
+				alert(rs.msg);
+			}
+		},'json');
+		return false;
+	});
+	$(".share").mouseover(function(){
+		var url=$(this).parent().find("a").attr("href");
+		var title=$(this).attr("title");
+		jiathis_config = {
+			url:"http://{$_SERVER['HTTP_HOST']}"+url,
+			title:title
+		};
+	});
+ $("#KinSlideshow").KinSlideshow();
+ 	var news_list={:json_encode($news_content_list)};
+	$(".more").toggle(function(){
+		var id=$(this).attr("id");
+		$(this).prev().html(news_list[id].detail);
+		$(this).html('收回>>');
+		return false;
+	},function(){
+		var id=$(this).attr("id");
+		$(this).prev().html(news_list[id].brief);
+		$(this).html('更多>>');
+		return false;
+	});
+});
+</script>
+<div class="g-bd5">
+	<div class="g-bdc">
+		<div class="g-box12 f-cb">
+			<div class="m-goodblog1">
+				<div class="itmc" id="KinSlideshow">
+					{foreach $slider_list as $v}
+					<a href="{$v['href']}"><img src="__UPLOAD__/{$v['image']}" width="646" height="140" /></a>
+					{/foreach}
+				</div>
+				<ul class="m-vw-nav f-cb">
+					<li class="j-crt"><a href="#">最新文章</a></li>
+					<li><a href="#">我的关注</a></li>
+					<li><a href="#">问答</a></li>
+				</ul>
+				<ul class="blogs" id="blogs">
+					<div class="list">
+						{foreach $news_list as $v}
+						<li class="itm">
+							<div class="itmc">
+								<div class="m-info f-cb">
+									<a class="img js-167639" href="{:U('News/read?id='.$v['id'])}"
+										target="_blank"><img
+										src="__UPLOAD__/{$v['img']}"
+										width="60" height="60"></a>
+										 <a class="sbtn js-167639 attention" type="1" other_id="{$v['id']}" href="#">&nbsp;<b>
+										 +
+										 </b>&nbsp;<span>&nbsp;{if in_array($v['id'],$news_attention_list)}取消关注{else}关注{/if}&nbsp;</span></a>
+										
+										  <a class="sbtn js-167639 jiathis jiathis_txt share" title="{$v['title']}" type="1" other_id="{$v['id']}" href="http://www.jiathis.com/share">&nbsp;<b>
+										 +</b>&nbsp;<span>分享&nbsp;</span></a>
+									<h3>
+										<a class="ttl js-167639" href="{:U('News/read?id='.$v['id'])}"
+											target="_blank">{:sub($v['title'],0,30)}</a>
+									</h3>
+									<div class="tags js-167639">{$v['create_time']}</div>
+								</div>
+								<div class="m-postlst f-cb js-167639">
+									{:sub(strip_tags($v['content']),0,130)}</div>
+								<a href="{:U('News/read?id='.$v['id'])}" id="{$v['id']}" class="more">更多>></a>
+							</div>
+						</li> 
+						{/foreach}
+					</div>
+					<div class="list" style="display:none;">
+						{foreach $attention_list as $v}
+						<li class="itm">
+							<div class="itmc">
+								<div class="m-info f-cb">
+									{if $v['type']==1}
+									<a class="img js-167639" href="{if $v['type']==1}{:U('News/read?id='.$v['id'])}{else}{:U('Question/read?id='.$v['id'])}{/if}"
+										target="_blank"><img
+										src="__UPLOAD__/{$v['img']}"
+										width="60" height="60"></a>
+									{/if}
+										{if isset($_SESSION['user'])}
+										 <a class="sbtn js-167639" other_id="{$v['id']}" type="{$v['type']}" href="#">&nbsp;<b>
+										 +
+										 </b>&nbsp;<span>&nbsp;取消关注&nbsp;</span></a>
+										 {/if}
+										 
+										  <a class="sbtn js-167639 jiathis jiathis_txt share" title="{$v['title']}" type="1" other_id="{$v['id']}" href="http://www.jiathis.com/share">&nbsp;<b>
+										 +</b>&nbsp;<span>分享&nbsp;</span></a>
+									<h3>
+										<a class="ttl js-167639" href="{if $v['type']==1}{:U('News/read?id='.$v['id'])}{else}{:U('Question/read?id='.$v['id'])}{/if}"
+											target="_blank">{:sub($v['title'],0,30)}</a>
+									</h3>
+									<div class="tags js-167639">{$v['create_time']}</div>
+								</div>
+								<div class="m-postlst f-cb js-167639">
+									{:sub(strip_tags($v['content']),0,130)}</div>
+							</div>
+						</li>
+						{/foreach}
+					</div>
+					<div class="list" style="display:none;">
+						{foreach $question_list as $v}
+						<li class="itm">
+							<div class="itmc">
+								<div class="m-info f-cb">
+										 <a class="sbtn js-167639 attention" other_id="{$v['id']}" type="2" href="#">&nbsp;<b>
+										 +
+										 </b>&nbsp;<span>&nbsp;{if in_array($v['id'],$question_attention_list)}取消关注{else}关注{/if}&nbsp;</span></a>
+										
+										  <a class="sbtn js-167639 jiathis jiathis_txt share" title="{$v['title']}" type="1" other_id="{$v['id']}" href="http://www.jiathis.com/share">&nbsp;<b>
+										 +</b>&nbsp;<span>分享&nbsp;</span></a>
+									<h3>
+										<a class="ttl js-167639" href="{:U('Question/read?id='.$v['id'])}"
+											target="_blank">{:sub($v['title'],0,30)}</a>
+									</h3>
+									<div class="tags js-167639">{$v['create_time']}</div>
+								</div>
+								<div class="m-postlst f-cb js-167639">
+									{:sub(strip_tags($v['content']),0,130)}
+									</div>
+							</div>
+						</li> 
+						{/foreach}
+					</div>
+				</ul>
+			</div>
+			<div class="m-goodtag1">
+				<ul>
+					<li class="j-crt"><a href="#">文章类型</a></li> 
+					{foreach $news_category_list as $v}
+					<li><a href="{:U('News/index?category_id='.$v['id'])}">{$v['title']}</a></li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=1396521772628935" charset="utf-8"></script>
+	{include "Public/footer"}

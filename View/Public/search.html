@@ -1,0 +1,27 @@
+<script type="text/javascript">
+	$(function() {
+		$("#search-form").submit(function() {
+			var keyword = $("input[name='keyword']").val();
+			if (keyword == "") {
+				alert("必须输入关键字");
+				return false;
+			}
+		});
+	});
+</script>
+<div class="g-bd5">
+	<div class="g-bdc">
+		<div class="g-mn">
+			<div class="logo">logo</div>
+			<div class="search">
+				<div class="m-info float_right">
+					<form action="{:U('News/search')}" id="search-form" class="right" method="get">
+					<input type="submit" class="btn js-167639 right" style="margin:5px 0 0 3px;" value="搜索" />
+					<input type="text" class="w-inputxt w-inputxt-1 right" autocomplete="off"
+						placeholder="请输入搜索内容....." name="keyword" value="{$_GET['keyword']|''}">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

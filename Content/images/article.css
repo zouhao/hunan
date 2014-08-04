@@ -1,0 +1,476 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td {
+	margin: 0;
+	padding: 0
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+caption,th {
+	text-align: left
+}
+fieldset,img,a img,iframe,html,body {
+	border: 0
+}
+li {
+	list-style: none
+}
+address,caption,cite,code,dfn,em,th,var {
+	font-style: normal;
+	font-weight: normal
+}
+h1,h2,h3,h4,h5,h6,em {
+	font-size: 100%;
+	font-weight: normal
+}
+b,strong {
+	font-style: normal;
+	font-size: 100%;
+	font-weight: bold
+}
+abbr,acronym {
+	border: 0;
+	font-variant: normal
+}
+sup {
+	vertical-align: text-top
+}
+sub {
+	vertical-align: text-bottom
+}
+del,ins {
+	text-decoration: none
+}
+textarea,input,button,select {
+	font-size: inherit;
+	line-height: inherit;
+	color: inherit;
+	font-family: inherit;
+	outline: 0
+}
+textarea {
+	overflow: auto;
+	resize: none
+}
+body {
+	word-wrap: break-word;
+	font-family:"Hiragino Sans GB","Microsoft YaHei","Î¢ÈíÑÅºÚ",tahoma,arial,simsun,"ËÎÌå";
+	color: #333;
+	background: #ededef;
+	text-align:left;
+}
+textarea,input,select {
+	font-family:"Hiragino Sans GB","Microsoft YaHei","Î¢ÈíÑÅºÚ",tahoma,arial,simsun,"ËÎÌå";
+	font-size: 12px;
+	color: #999
+}
+a,button {
+	cursor: pointer
+}
+a {
+	outline: 0;
+	star: expression(this.onFocus=this.blur())
+}
+a,a:hover{
+	color:#999;
+	text-decoration:none
+	}
+a:hover{
+	color:#333
+}
+.box: after {
+	clear: both;
+	display: block;
+	visibility: hidden;
+	height: 0;
+	overflow: hidden;
+	content: '.'
+}
+.box {
+	zoom: 1
+}
+.f-fl {
+	float: left
+}
+.f-fr {
+	float: right
+}
+a,.img img {
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease
+}
+.img: hover img {
+	opacity: .7;
+	filter: alpha(opacity=70)
+}
+.m-hdimg img {
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%
+}
+.icn0,.m-post .icn,.m-post .hot,.m-post .cmt {
+	background: url(../images/icon25.png) no-repeat 0 0
+}
+.g-doc {
+	width: 925px;
+	background: #fff;
+	margin: 0 auto;
+	padding: 18px 0 90px;
+	height: 100%;
+}
+.g-head {
+	position: relative;
+	border-bottom: 1px solid #ddd;
+	padding: 0 0 40px;
+	zoom: 1
+}
+.g-hdc {
+	width: 500px;
+	margin: 0 auto;
+	text-align: center
+}
+.g-bd {
+	padding: 45px 0 0;
+	width: 500px;
+	margin: 0 auto
+}
+.m-sch .txt {
+	border: 0;
+	background: 0;
+	width: 80px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center
+}
+.icn0 {
+	position: absolute;
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	left: 50%;
+	bottom: 0;
+	margin: 0 0 -5px -5px;
+	_margin-bottom: -20px;
+	background-position: 0 -370px
+}
+.m-hdimg img,.m-logo img {
+	vertical-align: middle;
+	margin: 32px 0 12px
+}
+.m-hdimg img {
+	width: 150px;
+	height: 150px
+}
+.m-about {
+	color: #666
+}
+.m-about .ttl a {
+	font-size: 16px;
+	color: #444;
+	font-weight: bold;
+	line-height: 28px;
+	letter-spacing: 1px
+}
+.m-about .cont {
+	margin: 8px 0 0
+}
+.m-postlist {
+	padding: 0 0 30px
+}
+.m-post {
+	position: relative;
+	margin: 0 0 54px;
+	zoom: 1;
+	min-height: 100px;
+	_height: 100px
+}
+.m-post .info {
+	position: absolute;
+	top: 0
+}
+.m-post .infol {
+	left: -84px
+}
+.m-post .infor {
+	right: -100px
+}
+.m-post .date,.m-pager {
+	border-top: 2px solid #888;
+	border-bottom: 1px solid #bbb;
+	height: 29px;
+	text-align: center;
+	line-height: 29px
+}
+.m-post .date {
+	display: inline-block;
+	width: 70px;
+	height: 29px;
+	text-align: center;
+	line-height: 29px
+}
+.m-post .icn {
+	display: inline-block;
+	width: 52px;
+	height: 52px;
+	margin-bottom: 6px
+}
+.m-post .icn2 {
+	background-position: 0 -69px
+}
+.m-post .icn3 {
+	background-position: 0 -216px
+}
+.m-post .icn4 {
+	background-position: 0 -143px
+}
+.m-post .hot {
+	display: block;
+	padding-left: 28px;
+	line-height: 18px;
+	font-size: 11px;
+	-webkit-text-size-adjust: none
+}
+.m-post .hot,.m-infor a {
+	color: #666
+}
+.m-post .hot: hover,.m-post .cmt: hover,.m-infor a: hover {
+	color: #000
+}
+.m-post .hot {
+	background-position: 10px -290px
+}
+ {
+	background-position: 10px -323px
+}
+.m-post .ctc a,.m-post .ctc a:hover{
+	color:#333;
+	font-weight:bold;
+	text-decoration:underline
+}
+.m-post .ctc .ttl{
+	margin:0 0 16px
+}
+.m-post .ctc .ttl a,.m-post .ctc .ttl a:hover{
+	font-size:16px;
+	color:#333;
+	line-height:24px;
+	font-weight:normal;
+	text-decoration:none
+}
+.m-post .ctc .img,.m-post .ctc .img:hover{
+	text-decoration:none
+}.m-post .ctc ul,.m-post .ctc ol{
+	padding:0 0 0 25px
+}
+.m-post .ctc ul li{
+	list-style:disc outside
+}
+.m-post .ctc ol li {
+	list-style: decimal outside
+}
+.m-post .ctc blockquote {
+	border-left: 1px solid #ccc;
+	padding-left: 10px
+}
+.m-post .ctc p,.m-post img,.m-post object,.m-post embed {
+	max-width: 100%!important;
+	_width: 100%
+}.m-post object,.m-post embed {
+	*width: 100%
+}
+.m-post-audio .player object,.m-post-audio .player embed {
+	width: 257px;
+	vertical-align: middle
+}
+.m-post-video .pic object,.m-post-video .pic embed {
+	display: block;
+	width: 500px;
+	height: 312px
+}
+.m-post .cover,.m-post .thumbnail {
+	float: left;
+	display: block;
+	width: 200px;
+	height: 200px;
+	margin: 0 20px 10px 0;
+	background: #fff
+}
+.m-post .cover img,.m-post .thumbnail img {
+	width: 200px;
+	height: 200px
+}
+.m-post .thumbnail img {
+	margin-top: 6px
+}
+.m-post .player {
+	margin-bottom: 14px
+}
+.m-post img,.m-post-video .pic {
+	margin-bottom: 25px
+}
+.m-post img {
+	vertical-align: middle
+}
+.m-infor {
+	margin: 10px 0 0;
+	border-top: 1px solid #bbb;
+	padding: 16px 0 9px
+}
+.m-infor .tags {
+	width: 180px
+}
+.m-infor .author {
+	width: 300px;
+	text-align: right
+}
+.m-infor .cc {
+	display: block
+}
+.m-infor .tags a {
+	padding: 0 6px 0 0
+}
+.m-infor .author a {
+	padding: 0 0 0 6px
+}
+.ie10 .m-post-leftimg .text ul,.ie10 .m-post-leftimg .text ol,.ie10 .m-detail-leftimg .text ul,.ie10 .m-detail-leftimg .text ol {
+	padding-left: 0
+}
+.ie10 .m-post-leftimg .text ul li,.ie10 .m-detail-leftimg .text ul li {
+	list-style: disc inside none
+}
+.ie10 .m-post-leftimg .text ol li,.ie10 .m-detail-leftimg .text ol li {
+	list-style: decimal inside none
+}
+.ie10 .m-post-leftimg .text ul li p,.ie10 .m-post-leftimg .text ol li p,.ie10 .m-detail-leftimg .text ul li p,.ie10 .m-detail-leftimg .text ol li p {
+	vertical-align: bottom;
+	*vertical-align: baseline;
+	display: -moz-inline-box;
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	margin: 0
+}
+?m-pager-idx a {
+	margin: 0 18px;
+	white-space: nowrap
+}
+.m-pager-idx .active,.m-pager-idx .active: hover {
+	color: #333;
+	cursor: default
+}
+.m-pager-dtl {
+	padding: 0 30px
+}
+.m-pager-dtl .prev {
+	float: left
+}
+.m-pager-dtl .next {
+	float: right
+}
+.m-cprt {
+	padding: 54px 0 0
+}
+.p-detailpage .m-cprt {
+	padding: 30px 0 0
+}
+.m-cprt,.m-cprt a {
+	font-size: 11px;
+	color: #bbb;
+	-webkit-text-size-adjust: none
+}
+.m-cprt a: hover {
+	color: #333
+}
+.f-dn {
+	display: none
+}
+.cc_1,.cc_2,.cc_3,.cc_4,.cc_5,.cc_6 {
+	height: 23px;
+	display: inline-block;
+	background: url() no-repeat left top;
+	_background-image: url()
+}
+.cc_1 {
+	width: 48px;
+	background-position: 0 5px
+}
+.cc_3 {
+	width: 32px;
+	background-position: 0 -43px
+}
+.cc_4 {
+	width: 32px;
+	background-position: -70px -66px
+}
+.cc_5 {
+	width: 32px;
+	background-position: 0 -90px
+}
+.cc_6 {
+	width: 14px;
+	background-position: -87px -113px
+}
+.m-cmthot {
+	margin: 46px 0 0;
+	color: #666
+}
+.m-cmthot a,.m-cmthot a: hover {
+	color: #666
+}
+.m-cmthot a: hover {
+	text-decoration: underline
+}
+.m-cmthot .nctitle {
+	margin-bottom: 8px
+}
+.m-cmt,.m-hot {
+	padding: 10px 0
+}
+.m-hot .avatar {
+	float: left;
+	width: 20px;
+	height: 20px;
+	border: 0;
+	margin: 0
+}
+.notes {
+	margin: 0;
+	padding: 0;
+	line-height: 20px;
+	font-size: 12px;
+	zoom: 1
+}
+.notes: after {
+	clear: both;
+	content: '.';
+	display: block;
+	height: 0;
+	visibility: hidden;
+	overflow: hidden
+}
+.notes .clear {
+	clear: both;
+	height: 0;
+	overflow: hidden
+}
+.m-hot .action {
+	float: right;
+	width: 470px
+}
+.m-hot .note {
+	list-style: none;
+	margin: 0;
+	float: left;
+	width: 100%;
+	padding: 10px 0;
+	border-top: 1px solid #ddd
+}
+.notes blockquote {
+	padding: 0 0 0 15px;
+	margin-left: 30px;
+	overflow: hidden;
+	word-wrap: break-word;
+	border-left: 1px solid #666
+}
