@@ -43,6 +43,7 @@ $(function(){
 		};
 	});
  $("#KinSlideshow").KinSlideshow();
+ /**
  	var news_list={:json_encode($news_content_list)};
 	$(".more").toggle(function(){
 		var id=$(this).attr("id");
@@ -55,6 +56,7 @@ $(function(){
 		$(this).html('更多>>');
 		return false;
 	});
+	*/
 });
 </script>
 <div class="g-bd5">
@@ -95,10 +97,13 @@ $(function(){
 								</div>
 								<div class="m-postlst f-cb js-167639">
 									{:sub(strip_tags($v['content']),0,130)}</div>
+									<!-- 
 								<a href="{:U('News/read?id='.$v['id'])}" id="{$v['id']}" class="more">更多>></a>
+									 -->
 							</div>
 						</li> 
 						{/foreach}
+						<a href="{:U('News/index')}" id="{$v['id']}" class="more">更多>></a>
 					</div>
 					<div class="list" style="display:none;">
 						{foreach $attention_list as $v}
