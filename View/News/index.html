@@ -5,6 +5,7 @@
 		<div class="f-cb">
 			<div class="m-goodblog1 width100">
 				<ul class="blogs" id="blogs">
+					{if !empty($list)}
 					{foreach $list as $v}
 					<li class="itm_search">
 						<div class="itmc">
@@ -21,6 +22,9 @@
 						</div>
 					</li>
 					{/foreach}
+					{else}
+					<div style="padding-top:30px; text-align:center;">暂无数据！</div>
+					{/if}
 				</ul>
 				<div class="pagination">{$page}</div>
 			</div>

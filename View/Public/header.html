@@ -121,9 +121,9 @@ $(function(){
     </ul>
     -->
     {if isset($_SESSION['user'])}
-    <span style="color:#fff;margin-right:30px;">{$_SESSION['user']['username']},欢迎回来.
-    <a href="{:U('User/index')}" >个人中心</a>
-    <a href="#" id="release-question">发布问题</a>
+    <span style="color:#fff;margin-right:30px;">{$_SESSION['user']['username']},欢迎回来！
+    <a href="{:U('User/index')}" >&nbsp;&nbsp;个人中心&nbsp;&nbsp;|&nbsp;</a>
+    <a href="#" id="release-question">发布问题&nbsp;&nbsp;|&nbsp;</a>
     <a href="{:U('User/layout')}">退出</a></span>
     {else}
     <ul class="btn">

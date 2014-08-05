@@ -60,13 +60,12 @@
 				{if isset($_SESSION['user'])}
 				<form action="{:U('reply')}" method="post" id="reply-form">
 				<input type="hidden" name="question_id" value="{$_GET['id']}" />
-				<div style="margin-bottom:10px;">
+				<div style="padding-bottom:50px;">
+					<input type="text" name="content" maxlength="255" class="w-inputxt w-inputxt-2" autocomplete="off"
+						placeholder="请输入回复内容.....">
 					<div class="m-info float_right">
 						<a class="btn js-167639" id="reply" href="#"><span>回复</span></a>
 					</div>
-					<input type="text" name="content" maxlength="255" class="w-inputxt w-inputxt-2" autocomplete="off"
-						placeholder="请输入回复内容.....">
-					<div style="clear:both;"></div>
 				</div>
 				</form>
 				{/if}
@@ -79,6 +78,7 @@
 			<div class="reply-button">{$v['create_time']}</div>
 		</div>
 		{/foreach}
+		<div style="clear:both;"></div>
 		<div class="pagination" style="margin-bottom:20px;">{$page}</div>
 		<div style="clear:both;"></div>
 	</div>

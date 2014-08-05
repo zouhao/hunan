@@ -83,7 +83,7 @@ $(function(){
                     <p><em>微信：</em>{$_SESSION['user']['weixin']|'&nbsp;'}</p>
                     <p><em>性别：</em>{:gender($_SESSION['user']['gender'])}</p>
                     <p><em>生日：</em>{$_SESSION['user']['birthday']|'&nbsp;'}</p>
-                    <p><em>简介：</em>{$_SESSION['user']['information']|'&nbsp;'}</p>
+                    <p><em>个人说明：</em>{$_SESSION['user']['information']|'&nbsp;'}</p>
                 </div>
  <script type="text/html" id="update-html">
    <form action="{:U('updateInfo')}" method="post">
@@ -112,7 +112,7 @@ $(function(){
     <input type="text" class="w-inputxt w-inputxt-3 left" onfocus="WdatePicker()" autocomplete="off" name="birthday" value="{$_SESSION['user']['birthday']}">
   </div>
   <div class="form-group">
-    <label class="dd">简介：</label>
+    <label class="dd">个人说明：</label>
     <input type="text" class="w-inputxt w-inputxt-3 left" name="information" value="{$_SESSION['user']['information']}">
   </div>
    <div class="form-group">
@@ -141,9 +141,9 @@ $(function(){
 </div>
 <div class="m-goodtag1">
  	<div class="user_head">
- 	<!-- 
+ 	
         <img src="http://imgsize.ph.126.net/?imgurl=http://img7.ph.126.net/YcGrfrXy_SQFwR6B4BE2qw==/1277051969354135957.jpg_180x180x0x90.jpg" width="180" height="180" >
-         -->
+        
         <div class="boxcaption">					
             <div class="quan_tit">
                 点击图片修改头像
@@ -151,7 +151,7 @@ $(function(){
         </div>
     </div>
     <div class="user_name">
-    	用户名
+    	{$_SESSION['user']['username']}
     </div>
 </div>
 </div>

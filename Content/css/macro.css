@@ -209,7 +209,7 @@ blockquote {
 	padding:7px;
 	line-height:30px;
 	margin-top:5px;
-	width: 370px;
+	width: 420px;
 	margin-left: 10px;
 	float: right;
 }
@@ -483,7 +483,7 @@ opacity:0;
 				text-decoration: underline;
                 }
 /**分页结束*/
-#footer{ background:#fff; border-top:1px solid #ccc; float:left; width:100%; text-align:center;}
+#footer{ background:#fff; border-top:1px solid #ccc; float:left; width:100%; text-align:center; padding-top:10px; padding-bottom:10px;}
 #footer_content{ width:100%; margin-left:auto; margin-right:auto; }
 #footer_content span{ width:200px; display:inline-block; padding:5px; line-height:30px;}
 #footer_content span font{ font-size:16px; display:block;}

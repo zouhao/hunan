@@ -83,12 +83,14 @@ $(function(){
 										target="_blank"><img
 										src="__UPLOAD__/{$v['img']}"
 										width="60" height="60"></a>
-										 <a class="sbtn js-167639 attention" type="1" other_id="{$v['id']}" href="#">&nbsp;<b>
+									<div style="float:right;">
+									<a class="sbtn js-167639 attention" type="1" other_id="{$v['id']}" href="#">&nbsp;<b>
 										 +
 										 </b>&nbsp;<span>&nbsp;{if in_array($v['id'],$news_attention_list)}取消关注{else}关注{/if}&nbsp;</span></a>
 										
 										  <a class="sbtn js-167639 jiathis jiathis_txt share" title="{$v['title']}" type="1" other_id="{$v['id']}" href="http://www.jiathis.com/share">&nbsp;<b>
 										 +</b>&nbsp;<span>分享&nbsp;</span></a>
+									</div>
 									<h3>
 										<a class="ttl js-167639" href="{:U('News/read?id='.$v['id'])}"
 											target="_blank">{:sub($v['title'],0,30)}</a>
