@@ -117,7 +117,8 @@ body {
 	line-height:150px;
 	float:left;
 	margin-left:20px;
-	width:100px;
+	width: 50px;
+	border: 1px solid transparent;
 }
 .g-mn .search{
 	height:100px;

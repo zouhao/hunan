@@ -5,8 +5,8 @@
   'QQ' => '836498672',
   'WEIXIN' => '15078373722',
   'EMAIL' => 'zpass@gamil.com',
-  'IOS_URL' => 'http://www.baidu.com',
-  'ANDROID_URL' => 'http://www.baidu.com',
-  'WINDOWS_PHONE_URL' => 'http://www.baidu.com',
+  'IOS_URL' => '#',
+  'ANDROID_URL' => '#',
+  'WINDOWS_PHONE_URL' => '#',
   'COPYRIGHT' => 'Copyright© 2014. All Rights Reserved.',
 );
